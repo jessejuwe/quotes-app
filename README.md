@@ -6,4 +6,4 @@ A react multipage SPA for:
 
 using react routers, hooks, custom hooks...
 
-livesite:
+livesite: https://quotes-app-ik.netlify.app/
