@@ -1,16 +1,15 @@
 import { Fragment, useEffect } from 'react';
-import { useParams, Route, Link, useRouteMatch } from 'react-router-dom';
+
+import { useParams, Outlet } from 'react-router-dom';
 
 import useHttp from '../hooks/hooks/use-http';
 import { getSingleQuote } from '../lib/api';
 
-import Comments from '../components/comments/Comments';
 import HightlightedQuote from '../components/quotes/HighlightedQuote';
 import NotFound from './NotFound';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 const QuoteDetail = () => {
-  const match = useRouteMatch();
   const params = useParams();
   const { quoteID } = params;
 
@@ -30,21 +29,8 @@ const QuoteDetail = () => {
 
   return (
     <Fragment>
-      <HightlightedQuote
-        author={quote.author}
-        id={quote.id}
-        text={quote.text}
-      />
-      <Route path={match.path} exact>
-        <div className="centered">
-          <Link to={`${match.url}/comments`} className="btn--flat">
-            Load Comments
-          </Link>
-        </div>
-      </Route>
-      <Route path={`${match.path}/comments`}>
-        <Comments />
-      </Route>
+      <HightlightedQuote author={quote.author} text={quote.text} />
+      <Outlet />
     </Fragment>
   );
 };

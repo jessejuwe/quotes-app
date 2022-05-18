@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
@@ -16,9 +16,8 @@ const sortQuotes = (quotes, ascending) => {
 };
 
 const QuoteList = props => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation(); // Programmatic Navigation
-  const match = useRouteMatch();
 
   const queryParams = new URLSearchParams(location.search);
 
@@ -27,10 +26,8 @@ const QuoteList = props => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const sortHandler = () =>
-    history.push({
-      pathname: match.url,
-      search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`,
-    });
+    // prettier-ignore
+    navigate(location.pathname, {search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`,});
 
   return (
     <Fragment>

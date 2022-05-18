@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import useHttp from '../hooks/hooks/use-http';
 import { getAllQuotes } from '../lib/api';
 
-import QuoteList from '../components/quotes/QuoteList';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import NoQuotesFound from '../components/quotes/NoQuotesFound';
+import QuoteList from '../components/quotes/QuoteList';
 
 const AllQuotes = () => {
   // prettier-ignore
@@ -23,11 +23,7 @@ const AllQuotes = () => {
   if (status === 'completed' && (!loadedQuotes || loadedQuotes.length === 0))
     return <NoQuotesFound />;
 
-  return (
-    <div>
-      <QuoteList quotes={loadedQuotes} />
-    </div>
-  );
+  return <QuoteList quotes={loadedQuotes} />;
 };
 
 export default AllQuotes;

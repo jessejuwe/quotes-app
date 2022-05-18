@@ -28,9 +28,6 @@ const NewCommentForm = props => {
 
     // send comment to server
     sendRequest({ commentData: { text: enteredText }, quoteID: props.quoteID });
-
-    // TODO: route to comments only, remove add comment form
-    // history.push(`/quotes/${props.quoteID}/comments`);
   };
 
   return (
