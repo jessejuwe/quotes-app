@@ -20,14 +20,11 @@ const QuoteList = props => {
   const location = useLocation(); // Programmatic Navigation
 
   const queryParams = new URLSearchParams(location.search);
-
   const isSortingAscending = queryParams.get('sort') === 'asc';
-
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
-  const sortHandler = () =>
-    // prettier-ignore
-    navigate(location.pathname, {search: `?sort=${isSortingAscending ? 'desc' : 'asc'}`,});
+  // prettier-ignore
+  const sortHandler = () => navigate({ search: `?sort=${isSortingAscending ? 'desc' : 'asc'}` });
 
   return (
     <Fragment>
